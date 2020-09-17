@@ -22,8 +22,13 @@ for (var i = 0; i < 5; i++) {
 ```
 What is the result when you click on [Button 3] ? Explain why and and the mechanisms that are
 behind.
+---
 #### Answer 1
-> Answer
+>This simple *__for__* is creating 5 buttons, appending them to the document, and adding a listener to them.
+>However, this code is a little tricky: in fact the variable *__i__* used inside the *__f__*, 
+>is defined as __var, therefore its scope is global.
+>So, the listener will print in the console the latest variable *__i__*. So in this case,
+>for the button 3, as for any other button, it will be displayed *__5__*.  
 
 ### Question 2
 Given the following 2 functions:
@@ -50,7 +55,7 @@ For example, let’s say that:
 - GetItem2 will call the callback with { value: 12.5 } after 1.5 seconds
 
 After approximately 2.3 seconds, your program should print 44.63.
-
+---
 #### Answer 2
 >In order to execute both function in parallel and print the result as soon as both functions have been executed,
 >we can use Promise. With the native support of 
@@ -81,6 +86,6 @@ collected
   - You are free to use any technology you want for that UI development
 For your code, please focus on simplicity, clarity and good engineering practices.
 Please provide instructions on how to build the extension.
-
+---
 #### Answer 3
 >Answer
