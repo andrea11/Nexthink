@@ -52,7 +52,18 @@ For example, let’s say that:
 After approximately 2.3 seconds, your program should print 44.63.
 
 #### Answer 2
-> Answer
+>In order to execute both function in parallel and print the result as soon as both functions have been executed,
+>we can use Promise. With the native support of 
+>[Promises/A+](https://github.com/promises-aplus/promises-spec) in Javascript,
+>such as in all modern browsers, Promises are one of the standard way to work with asynchronous functions,
+>solving one issue with javascript: [Callback hell](http://callbackhell.com/).
+>
+>However, nowadays ES6 provide another way to work with asynchronous function and promises: 
+>*__async__*/*__await__* keywords
+>The main purpose of this feature is to make the javascript code flatter, avoiding as much as possible callbacks,
+>making code more readable.
+>
+>To see the source code, go [here](./q2/readme.md)
 
 ### Question 3
 Create a Chrome browser extension which allows to capture web requests from web applications and
