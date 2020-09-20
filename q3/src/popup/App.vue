@@ -1,48 +1,51 @@
 <template>
-  <div id="popup" class="container-fluid my-3">
+  <b-container fluid="" id="popup" class="my-3">
     <transition name="fade">
-      <div v-if="visible" class="row">
-        <div class="col-12">
+      <b-row v-if="visible">
+        <b-col>
           <div class="card">
             <div class="card-body table-wrapper-scroll-y container">
               <h5 class="card-title">Whitelisted URLs</h5>
+              <p class="card-text">All requests sent to these URLs will not be captured</p>
               <whitelist-url-table v-bind:urls="urls"></whitelist-url-table>
             </div>
           </div>
-        </div>
-      </div>
+        </b-col>
+      </b-row>
     </transition>
-    <div class="row mt-3">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">New URL</h5>
+    <b-row class="mt-3">
+      <b-col>
+        <b-card>
+          <b-card-body>
+            <b-card-title class="h5">New URL to whitelist</b-card-title>
+            <b-card-text>Add an URL to prevent this extension to capture any request sent to this
+              url</b-card-text>
             <url-builder v-bind:url="newUrl"></url-builder>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+          </b-card-body>
+        </b-card>
+      </b-col>
+    </b-row>
+    <b-row class="mt-3">
+      <b-col>
+        <b-card>
+          <b-card-body>
+            <config></config>
+          </b-card-body>
+        </b-card>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 <script>
 import UrlBuilder from '@/components/UrlBuilder.vue'
 import WhitelistUrlTable from '@/components/WhitelistUrlTable.vue'
+import Config from '@/components/Config.vue'
 
 export default {
   name: 'App',
   data: function () {
     return {
-      urls: [
-        {
-          url: 'http://Foo',
-          title: 'Foo',
-          description: ''
-        },
-        {
-          url: 'http://Bar',
-          title: 'Bar',
-          description: ''
-        }],
+      urls: [],
       newUrl: {
         url: '',
         title: '',
@@ -57,12 +60,13 @@ export default {
   },
   components: {
     WhitelistUrlTable,
-    UrlBuilder
+    UrlBuilder,
+    Config
   },
   watch: {
     urls: {
-      handler: function (val) {
-        chrome.storage.local.set({ urls: val })
+      handler: function (value) {
+        chrome.storage.local.set({ urls: value })
       },
       deep: true
     }
@@ -96,12 +100,16 @@ export default {
   }
 
   .fade-enter-active, .fade-leave-active {
-    transition: all 300ms;
+    transition: all 500ms;
   }
 
   .fade-enter, .fade-leave-to {
     opacity: 0;
     transform: translateX(-100%);
+  }
+
+  .fade-move {
+    transition: all 500ms;
   }
 
   body {

@@ -5,6 +5,7 @@
   "homepage_url": "http://localhost:8080/",
   "default_locale": "en",
   "permissions": [
+    "alarms",
     "declarativeContent",
     "storage",
     "webRequest",
@@ -31,5 +32,5 @@
     "128": "icons/128.png"
   },
   "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
