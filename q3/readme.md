@@ -12,8 +12,8 @@ Webpack and babel are used to package all different files in a single one.
 ## Get started
 The easiest way to build this extension and start up the server is to using the script file [startup.sh](startup.sh).
 It would generate the extension in the [dist folder](dist) and it will run the back-end server
-(for more details check the [readme](server/readme.md)) 
-Because of the strict rule of Google Chrome, you need to import the extension manually
+(for more details check the [readme](server/readme.md)).  
+Because of the strict rules of Google Chrome, you need to import the extension manually
 (you can follow [this guide]((https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)))
 #### Prerequisites
 - docker

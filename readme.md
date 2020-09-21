@@ -58,7 +58,7 @@ After approximately 2.3 seconds, your program should print 44.63.
 ---
 #### Answer 2
 >In order to execute both function in parallel and print the result as soon as both functions have been executed,
->we can use Promise. With the native support of 
+>we can use Promises. With the native support of 
 >[Promises/A+](https://github.com/promises-aplus/promises-spec) in Javascript,
 >such as in all modern browsers, Promises are one of the standard way to work with asynchronous functions,
 >solving one issue with javascript: [Callback hell](http://callbackhell.com/).
@@ -68,11 +68,11 @@ After approximately 2.3 seconds, your program should print 44.63.
 >The main purpose of this feature is to make the javascript code flatter, avoiding as much as possible callbacks,
 >making code more readable.
 >
->To see the source code, go [here](./q2/readme.md)
+>To see the source code, go [here](./q2)
 
 ### Question 3
 Create a Chrome browser extension which allows to capture web requests from web applications and
-send those to a server.
+send those to a server.  
 Requirements:
 - You only need to support the latest Chrome
 - Your extension can leverage the webRequest API to capture requests
@@ -88,4 +88,4 @@ For your code, please focus on simplicity, clarity and good engineering practice
 Please provide instructions on how to build the extension.
 ---
 #### Answer 3
->Answer
+>Check the source code [here](./q3)
