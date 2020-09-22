@@ -8,6 +8,6 @@ COPY public /workdir/public
 
 COPY .editorconfig .eslintrc.js package.json vue.config.js babel.config.js /workdir/
 
-RUN yarn &&\
-    yarn build &&\
-    cp -r ./dist /dist
+RUN yarn && yarn build
+
+RUN cp -r ./dist /dist

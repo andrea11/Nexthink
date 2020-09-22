@@ -7,6 +7,7 @@
 <script>
 import { request, gql } from 'graphql-request'
 import { graphqlServerEndpoint } from '@/config'
+import { chromeStorageApi } from '@/api/chrome-storage-api'
 
 export default {
   name: 'Config',
@@ -18,21 +19,21 @@ export default {
   },
   mounted: function () {
     const self = this
-    this.counter = setInterval(function () {
-      chrome.storage.local.get(['count_requests'], function (result) {
+    this.counter = window.setInterval(function () {
+      chromeStorageApi.local.get(['count_requests'], function (result) {
         if (result != null && result.count_requests != null) {
           self.countRequests = result.count_requests
         }
       })
     }, 300)
   },
-  unmounted: function () {
+  beforeDestroy: function () {
     if (this.counter != null) {
-      clearTimeout(this.counter)
+      window.clearInterval(this.counter)
     }
   },
   methods: {
-    wipeData () {
+    async wipeData () {
       const mutation = gql`
         mutation delete_requests {
           delete_requests (
@@ -41,12 +42,9 @@ export default {
             affected_rows
           }
         }`
-      request(graphqlServerEndpoint, mutation).then(
-        function () {
-          chrome.storage.local.set({ requests: [] })
-          chrome.storage.local.set({ count_requests: 0 })
-        }
-      )
+      await request(graphqlServerEndpoint, mutation)
+      chromeStorageApi.local.set({ requests: [] })
+      chromeStorageApi.local.set({ count_requests: 0 })
     }
   }
 }

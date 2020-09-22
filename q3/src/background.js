@@ -14,6 +14,7 @@ chrome.runtime.onInstalled.addListener(function () {
 
   chrome.webRequest.onCompleted.addListener(storeUrls, { urls: ['<all_urls>'] })
   chrome.alarms.onAlarm.addListener(sendUrls)
+  chrome.alarms.onAlarm.addListener(updateCounter)
 
   chrome.alarms.create('send-url-alarm', {
     periodInMinutes: 0.1
@@ -41,6 +42,19 @@ function storeUrls (details) {
   })
 }
 
+function updateCounter () {
+  const query = gql`query requests_aggregate {
+    requests_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }`
+  request(graphqlServerEndpoint, query).then(function (result) {
+    chrome.storage.local.set({ count_requests: result.requests_aggregate.aggregate.count })
+  })
+}
+
 function sendUrls () {
   const mutation = gql`
   mutation insert_requests($requests: [requests_insert_input!]!) {
@@ -51,8 +65,7 @@ function sendUrls () {
         id
       }
     }
-  }
-`
+  }`
 
   chrome.storage.local.get(['requests'], function (savedRequests) {
     if (savedRequests == null || savedRequests.requests == null) {
@@ -71,15 +84,8 @@ function sendUrls () {
     })
 
     request(graphqlServerEndpoint, mutation, { requests: data }).then(
-      function (result) {
+      function () {
         chrome.storage.local.set({ requests: [] })
-        chrome.storage.local.get(['count_requests'], function (savedCountRequests) {
-          let countRequests = result.insert_requests.returning.length
-          if (savedCountRequests != null && savedCountRequests.count_requests != null) {
-            countRequests += savedCountRequests.count_requests
-          }
-          chrome.storage.local.set({ count_requests: countRequests })
-        })
       }
     )
   })

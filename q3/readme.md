@@ -54,6 +54,17 @@ yarn build
 Then you can import you compiled extension in Chrome following [this guide]
 (https://webkul.com/blog/how-to-install-the-unpacked-extension-in-chrome/)
 
+## How to trigger unit test
+The unit test are based on [jest](https://jestjs.io/) wrapped with
+[vue/cli-plugin-unit-jest](https://cli.vuejs.org/core-plugins/unit-jest.html).  
+To execute trigger the unit test:
+```
+npm run test:unit
+```
+OR
+```
+yarn test:unit
+```
 ## Lints and fixes files
 To fix eventual errors raised by eslint:
 ```
