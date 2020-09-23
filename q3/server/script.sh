@@ -14,7 +14,8 @@ terminate() {
   exit 0
 }
 
-docker-compose up --build --detach
+docker-compose build
+docker-compose up --detach
 
 sleep 3
 
