@@ -112,31 +112,4 @@ describe('WhiteListUrlTable.vue', () => {
       url: 'url2'
     })
   })
-
-  //
-  // it('should retrieve the config from the storage after 300ms', () => {
-  //   chromeStorageApi.local.get.mockImplementation((_, callback) => {
-  //     callback({ count_requests: 1 })
-  //   })
-  //   expect(wrapper.vm.countRequests).toBe(0)
-  //   jest.runTimersToTime(300)
-  //   expect(chromeStorageApi.local.get).toHaveBeenCalledTimes(1)
-  //   expect(chromeStorageApi.local.get).toHaveBeenCalledWith(['count_requests'], expect.anything())
-  //   expect(wrapper.vm.countRequests).toBe(1)
-  // })
-  //
-  // it('should retrieve the config from the storage every 300ms', () => {
-  //   jest.runTimersToTime(3000)
-  //   expect(chromeStorageApi.local.get).toHaveBeenCalledTimes(10)
-  // })
-  //
-  // it('should create an interval and destroy it', () => {
-  //   const setIntervalSpy = jest.spyOn(window, 'setInterval')
-  //   const clearIntervalSpy = jest.spyOn(window, 'clearInterval')
-  //   const counter = wrapper.vm.counter
-  //   expect(counter).not.toBeNull()
-  //   expect(setIntervalSpy).toBeCalledWith(expect.anything(), 300)
-  //   wrapper.vm.$destroy()
-  //   expect(clearIntervalSpy).toBeCalledWith(counter)
-  // })
 })
